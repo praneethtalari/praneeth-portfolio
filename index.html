@@ -231,12 +231,17 @@
     background: var(--card); border: 1px solid var(--border);
     border-radius: 10px; padding: 1.25rem;
     display: flex; align-items: flex-start; gap: 1rem;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none; color: var(--text);
   }
-  .cert-card:hover { border-color: var(--accent); }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
   .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
   .cert-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem; }
   .cert-issuer { color: var(--text3); font-size: 0.75rem; }
+  .cert-verify {
+    font-size: 0.7rem; color: var(--accent); font-family: 'JetBrains Mono', monospace;
+    margin-top: 0.35rem; display: flex; align-items: center; gap: 0.3rem;
+  }
 
   /* ACHIEVEMENTS */
   .achieve-card {
@@ -518,48 +523,54 @@
     <h2 class="section-title">Credentials</h2>
     <p class="section-desc">Microsoft certified and continuously building expertise.</p>
     <div class="certs-grid">
-      <div class="cert-card">
+      <a class="cert-card" href="https://learn.microsoft.com/en-gb/users/praneethtalari-8816/credentials/3040a4fa18b54880" target="_blank">
         <div class="cert-icon">🏅</div>
         <div>
           <div class="cert-name">Azure Administrator Associate</div>
           <div class="cert-issuer">Microsoft · AZ-104</div>
+          <div class="cert-verify">🔗 Verify credential →</div>
         </div>
-      </div>
-      <div class="cert-card">
+      </a>
+      <a class="cert-card" href="https://learn.microsoft.com/en-gb/users/praneethtalari-8816/credentials/7a96fd218751aead" target="_blank">
         <div class="cert-icon">🏅</div>
         <div>
           <div class="cert-name">Azure Fundamentals</div>
           <div class="cert-issuer">Microsoft · AZ-900</div>
+          <div class="cert-verify">🔗 Verify credential →</div>
         </div>
-      </div>
-      <div class="cert-card">
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/677b7aba-97c9-4012-b04e-183273b8b55e/public_url" target="_blank">
         <div class="cert-icon">🐍</div>
         <div>
           <div class="cert-name">MTA: Programming Using Python</div>
           <div class="cert-issuer">Microsoft · 2020</div>
+          <div class="cert-verify">🔗 Verify credential →</div>
         </div>
-      </div>
-      <div class="cert-card">
+      </a>
+      <a class="cert-card" href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_69e27f9706a26dec" target="_blank">
         <div class="cert-icon">🤖</div>
         <div>
           <div class="cert-name">GenAI Powered Data Analytics</div>
           <div class="cert-issuer">Tata Job Simulation</div>
+          <div class="cert-verify">🔗 Verify credential →</div>
         </div>
-      </div>
-      <div class="cert-card">
+      </a>
+      <a class="cert-card" href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_69e27f9706a26dec55" target="_blank">
         <div class="cert-icon">🔐</div>
         <div>
           <div class="cert-name">Cybersecurity Analyst Simulation</div>
           <div class="cert-issuer">Tata Job Simulation</div>
+          <div class="cert-verify">🔗 Verify credential →</div>
         </div>
-      </div>
-      <div class="cert-card">
+      </a>
+      <a class="cert-card" href="https://www.theforage.com/completion-certificates/mfxGwGDp6WkQmtmTf/vcKAB5yYAgvemepGQ_mfxGwGDp6WkQmtmTf_69e27f9706a" target="_blank">
         <div class="cert-icon">💳</div>
         <div>
           <div class="cert-name">Cybersecurity Job Simulation</div>
           <div class="cert-issuer">Mastercard</div>
+          <div class="cert-verify">🔗 Verify credential →</div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
