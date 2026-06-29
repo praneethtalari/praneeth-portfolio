@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Krishna Praneeth Talari — Cloud & Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0F1E;
+    --bg2: #111827;
+    --bg3: #1a2234;
+    --accent: #3B82F6;
+    --accent2: #06B6D4;
+    --accent3: #8B5CF6;
+    --text: #F1F5F9;
+    --text2: #94A3B8;
+    --text3: #64748B;
+    --border: #1E293B;
+    --card: #0F172A;
+    --green: #10B981;
+    --yellow: #F59E0B;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem; color: var(--accent); font-weight: 500;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 0.85rem;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow {
+    position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; text-align: center; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+    color: var(--accent); padding: 0.35rem 1rem; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 500; margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 1rem; letter-spacing: -0.02em;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text2); margin-bottom: 0.75rem; font-weight: 400;
+  }
+  .hero-location {
+    font-size: 0.85rem; color: var(--text3);
+    font-family: 'JetBrains Mono', monospace; margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-primary {
+    background: var(--accent); color: white;
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: all 0.2s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #2563EB; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    border: 1px solid var(--border); transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-size: 1.75rem; font-weight: 700; color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.75rem; color: var(--text3); margin-top: 0.25rem; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--accent); font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text);
+  }
+  .section-desc { color: var(--text2); font-size: 1rem; max-width: 560px; margin-bottom: 3rem; }
+
+  /* SKILLS */
+  .skills-bg { background: var(--bg2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .skill-card-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--text); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
+    background: rgba(59,130,246,0.08); color: var(--accent2);
+    border: 1px solid rgba(59,130,246,0.15);
+    padding: 0.2rem 0.6rem; border-radius: 4px;
+  }
+
+  /* EXPERIENCE */
+  .exp-timeline { position: relative; padding-left: 2rem; }
+  .exp-timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .exp-item { position: relative; margin-bottom: 3rem; }
+  .exp-dot {
+    position: absolute; left: -2.45rem; top: 0.35rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+  }
+  .exp-meta {
+    display: flex; align-items: center; gap: 1rem;
+    flex-wrap: wrap; margin-bottom: 0.5rem;
+  }
+  .exp-company {
+    font-weight: 700; font-size: 1.05rem; color: var(--text);
+  }
+  .exp-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--text3);
+    background: var(--bg3); padding: 0.2rem 0.6rem; border-radius: 4px;
+  }
+  .exp-role { color: var(--accent2); font-size: 0.9rem; font-weight: 500; margin-bottom: 0.75rem; }
+  .exp-points { list-style: none; }
+  .exp-points li {
+    color: var(--text2); font-size: 0.9rem; padding: 0.3rem 0;
+    padding-left: 1rem; position: relative;
+  }
+  .exp-points li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.75rem;
+  }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .edu-degree { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+  .edu-field { color: var(--accent2); font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .edu-school { color: var(--text2); font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .edu-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .edu-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    padding: 0.2rem 0.6rem; border-radius: 4px;
+  }
+  .edu-badge.gpa { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+  .edu-badge.year { background: rgba(59,130,246,0.1); color: var(--accent); border: 1px solid rgba(59,130,246,0.2); }
+
+  /* CERTS */
+  .certs-bg { background: var(--bg2); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); }
+  .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .cert-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem; }
+  .cert-issuer { color: var(--text3); font-size: 0.75rem; }
+
+  /* ACHIEVEMENTS */
+  .achieve-card {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.05));
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 12px; padding: 1.5rem;
+    display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem;
+  }
+  .achieve-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .achieve-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .achieve-desc { color: var(--text2); font-size: 0.85rem; }
+
+  /* CONTACT */
+  .contact-bg { background: var(--bg2); }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .contact-link {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem;
+    text-decoration: none; color: var(--text);
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-icon { font-size: 1.25rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text3); font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media (max-width: 640px) {
+    nav .nav-links { display: none; }
+    .hero-stats { gap: 1.5rem; }
+    .exp-timeline { padding-left: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">praneeth.dev</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Available for full-time roles · OPT · June 2026
+    </div>
+    <h1>Sai Krishna<br><span>Praneeth Talari</span></h1>
+    <p class="hero-sub">Cloud & Data Engineer · Azure · AWS · Snowflake · Power BI · Terraform · CI/CD</p>
+    <p class="hero-location">📍 Worcester, MA · Open to Relocate Across U.S. · Remote</p>
+    <div class="hero-ctas">
+      <a href="mailto:praneethtalari1@gmail.com" class="btn-primary">Get In Touch</a>
+      <a href="https://linkedin.com/in/praneeth-talari" target="_blank" class="btn-secondary">LinkedIn Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-label">Years at TCS</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-label">Enterprise Clients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3<span>.</span>87</div>
+        <div class="stat-label">MS GPA at Clark</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Azure Certifications</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Team Members Trained</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg" id="skills">
+  <div class="container">
+    <div class="section-eyebrow">// technical skills</div>
+    <h2 class="section-title">What I Work With</h2>
+    <p class="section-desc">3 years of hands-on production experience across cloud, data engineering and infrastructure.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-title">Cloud Platforms</div>
+        <div class="skill-tags">
+          <span class="tag">Microsoft Azure</span><span class="tag">AZ-104</span>
+          <span class="tag">AWS</span><span class="tag">Azure AD</span>
+          <span class="tag">RBAC</span><span class="tag">IAM</span>
+          <span class="tag">EC2</span><span class="tag">S3</span><span class="tag">Lambda</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔧</div>
+        <div class="skill-card-title">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">Azure Data Factory</span><span class="tag">Databricks</span>
+          <span class="tag">Snowflake</span><span class="tag">ETL/ELT</span>
+          <span class="tag">Apache Spark</span><span class="tag">Medallion Arch</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">BI & Reporting</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span><span class="tag">DAX</span>
+          <span class="tag">Tableau</span><span class="tag">Star Schema</span>
+          <span class="tag">Semantic Models</span><span class="tag">Data Governance</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">⚙️</div>
+        <div class="skill-card-title">DevOps & IaC</div>
+        <div class="skill-tags">
+          <span class="tag">Terraform</span><span class="tag">Jenkins</span>
+          <span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span>
+          <span class="tag">Docker</span><span class="tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">💻</div>
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">SQL</span>
+          <span class="tag">PL/SQL</span><span class="tag">Bash</span>
+          <span class="tag">PowerShell</span><span class="tag">DAX</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🐧</div>
+        <div class="skill-card-title">Linux & Infrastructure</div>
+        <div class="skill-tags">
+          <span class="tag">CentOS</span><span class="tag">RHEL</span>
+          <span class="tag">Linux Admin</span><span class="tag">Zabbix</span>
+          <span class="tag">Shell Scripting</span><span class="tag">WinSCP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-eyebrow">// work experience</div>
+    <h2 class="section-title">Where I've Worked</h2>
+    <p class="section-desc">3 years at Tata Consultancy Services across healthcare, banking and public safety clients in the U.S.</p>
+    <div class="exp-timeline">
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-company">Tata Consultancy Services</span>
+          <span class="exp-period">Dec 2021 – Aug 2024</span>
+        </div>
+        <div class="exp-role">Systems Engineer · India</div>
+        <ul class="exp-points">
+          <li>Built production ETL/ELT pipelines using Azure Data Factory and Databricks for large-scale banking data platform using medallion architecture</li>
+          <li>Designed and delivered Power BI dashboards with DAX optimization for clinical and operational reporting for U.S. healthcare clients</li>
+          <li>Developed Snowflake data warehouse schemas using star schema dimensional modeling, advanced SQL and performance tuning</li>
+          <li>Built CI/CD pipelines using Jenkins, GitHub Actions and Azure DevOps for automated deployment workflows</li>
+          <li>Administered CentOS/RHEL Linux servers for public safety infrastructure across multiple U.S. regions</li>
+          <li>Designed and enforced RBAC and IAM policies across Azure cloud resources for enterprise banking client</li>
+          <li>Automated infrastructure provisioning using Terraform and PowerShell scripting</li>
+          <li>Led PL/SQL knowledge transfer sessions upskilling 8 team members</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Azure Data Factory</span><span class="tag">Databricks</span>
+          <span class="tag">Snowflake</span><span class="tag">Power BI</span>
+          <span class="tag">DAX</span><span class="tag">Jenkins</span>
+          <span class="tag">Terraform</span><span class="tag">CentOS</span>
+          <span class="tag">Python</span><span class="tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-company">Tata Consultancy Services</span>
+          <span class="exp-period">Aug 2021 – Nov 2021</span>
+        </div>
+        <div class="exp-role">Assistant Systems Engineer (Trainee) · India</div>
+        <ul class="exp-points">
+          <li>Supported database validation and application maintenance for enterprise healthcare platform</li>
+          <li>Assisted in Selenium-based automation testing and release validation</li>
+          <li>Promoted to Systems Engineer in just 3 months by clearing Digital Capability Assessment</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">SQL</span><span class="tag">Selenium</span><span class="tag">Testing</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-meta">
+          <span class="exp-company">Anvira Edustation</span>
+          <span class="exp-period">May 2019 – Jun 2019</span>
+        </div>
+        <div class="exp-role">Cyber Security Intern · Mumbai</div>
+        <ul class="exp-points">
+          <li>Performed network vulnerability assessments using Wireshark, Nmap and Burp Suite</li>
+          <li>Conducted SQL injection testing and web application security analysis</li>
+          <li>🏆 Won 1st place among 150 participants at JNTU-K & IIT Bombay Ethical Hacking Workshop</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Wireshark</span><span class="tag">Nmap</span><span class="tag">Burp Suite</span><span class="tag">Ethical Hacking</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="skills-bg" id="education">
+  <div class="container">
+    <div class="section-eyebrow">// education</div>
+    <h2 class="section-title">Academic Background</h2>
+    <p class="section-desc">STEM MS from Clark University combined with a strong engineering foundation.</p>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">Master of Science</div>
+        <div class="edu-field">Information Technology (STEM)</div>
+        <div class="edu-school">Clark University · Worcester, MA</div>
+        <div class="edu-meta">
+          <span class="edu-badge gpa">GPA 3.87/4.0</span>
+          <span class="edu-badge year">Graduated May 2026</span>
+        </div>
+        <div style="margin-top:1rem;">
+          <div style="font-size:0.75rem;color:var(--text3);margin-bottom:0.5rem;">KEY COURSEWORK</div>
+          <div class="skill-tags">
+            <span class="tag">Cloud Computing</span>
+            <span class="tag">Data Management</span>
+            <span class="tag">Python Analytics</span>
+            <span class="tag">Incident Response</span>
+            <span class="tag">Network Architecture</span>
+            <span class="tag">Cybersecurity</span>
+            <span class="tag">Data Visualization</span>
+            <span class="tag">IT Strategy</span>
+          </div>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Technology</div>
+        <div class="edu-field">Civil Engineering</div>
+        <div class="edu-school">NRI Institute of Technology · JNTU-K, India</div>
+        <div class="edu-meta">
+          <span class="edu-badge year">Graduated Jul 2021</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-bg" id="certifications">
+  <div class="container">
+    <div class="section-eyebrow">// certifications</div>
+    <h2 class="section-title">Credentials</h2>
+    <p class="section-desc">Microsoft certified and continuously building expertise.</p>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Azure Administrator Associate</div>
+          <div class="cert-issuer">Microsoft · AZ-104</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Azure Fundamentals</div>
+          <div class="cert-issuer">Microsoft · AZ-900</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🐍</div>
+        <div>
+          <div class="cert-name">MTA: Programming Using Python</div>
+          <div class="cert-issuer">Microsoft · 2020</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <div>
+          <div class="cert-name">GenAI Powered Data Analytics</div>
+          <div class="cert-issuer">Tata Job Simulation</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔐</div>
+        <div>
+          <div class="cert-name">Cybersecurity Analyst Simulation</div>
+          <div class="cert-issuer">Tata Job Simulation</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">💳</div>
+        <div>
+          <div class="cert-name">Cybersecurity Job Simulation</div>
+          <div class="cert-issuer">Mastercard</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-eyebrow">// achievements</div>
+    <h2 class="section-title">Highlights</h2>
+    <p class="section-desc" style="margin-bottom:2rem;">Recognition and milestones along the way.</p>
+    <div class="achieve-card">
+      <div class="achieve-icon">🏆</div>
+      <div>
+        <div class="achieve-title">1st Place — Cyber Security & Ethical Hacking Workshop</div>
+        <div class="achieve-desc">Won among 150 participants at a workshop organized by JNTU-K in collaboration with IIT Bombay · March 2019</div>
+      </div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon">⚡</div>
+      <div>
+        <div class="achieve-title">Promoted in 3 Months at TCS</div>
+        <div class="achieve-desc">Cleared the Digital Capability Assessment (DCA) and was promoted from Trainee to Systems Engineer ahead of the standard promotion timeline</div>
+      </div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon">🎓</div>
+      <div>
+        <div class="achieve-title">3.87 GPA — MS in Information Technology</div>
+        <div class="achieve-desc">Graduated from Clark University, Worcester, MA with a 3.87/4.0 GPA in May 2026 while drawing on 3 years of professional experience</div>
+      </div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon">👥</div>
+      <div>
+        <div class="achieve-title">Upskilled 8 Team Members</div>
+        <div class="achieve-desc">Led PL/SQL and data platform knowledge transfer sessions at TCS successfully improving team delivery speed and reducing dependency on senior engineers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="container">
+    <div class="section-eyebrow">// contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-desc" style="margin-bottom:2rem;">Open to full-time roles in Cloud Engineering, Data Engineering and BI Development. Available immediately on OPT.</p>
+    <div class="contact-grid">
+      <a href="mailto:praneethtalari1@gmail.com" class="contact-link">
+        <span class="contact-icon">✉️</span>
+        praneethtalari1@gmail.com
+      </a>
+      <a href="tel:7747018364" class="contact-link">
+        <span class="contact-icon">📱</span>
+        774-701-8364
+      </a>
+      <a href="https://linkedin.com/in/praneeth-talari" target="_blank" class="contact-link">
+        <span class="contact-icon">💼</span>
+        linkedin.com/in/praneeth-talari
+      </a>
+      <a href="#" class="contact-link">
+        <span class="contact-icon">📍</span>
+        Worcester, MA · Open to Relocate
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Sai Krishna Praneeth Talari · 2026 · praneeth.dev</p>
+</footer>
+
+</body>
+</html>
